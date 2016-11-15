@@ -8,8 +8,53 @@
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-    <div class="container">
-      <p>Welcome to your life.</p>
+    <div class="container" ng-controller="GifController">
+      <form ng-submit="addGif(gif)">
+        <label class="label">Name</label>
+        <p class="control">
+          <input class="input" type="text" 
+                 ng-model="gif.name" ng-keyup="validateName(gif.name)"/>
+          <span class="input-error">{{ errors.name }}</span>
+
+        </p>
+        <label class="label">Gif URL</label>
+        <p class="control">
+          <input class="input" type="text" 
+                 ng-model="gif.url" ng-keyup="validateUrl(gif.url)"/>
+          <span class="input-error">{{ errors.url }}</span>
+        </p>
+        <p class="control">
+          <button class="button is-primary">Add Gif</button>
+        </p>
+      </form>
+
+      <h2>My Awesome Gifs</h2>
+      <ul class="cool-gifs">
+        <li ng-repeat="gif in gifs">
+          <button ng-click="deleteMe(gif)"></button>
+          <h3>{{ gif.name }}</h3>
+          <img src="{{ gif.url }}" />
+        </li>
+      </ul>
+
+<!-- Try to use this for nicer styling -->
+<!--       <div class="columns">
+        <div class="column">
+          First column
+        </div>
+        <div class="column">
+          Second column
+        </div>
+        <div class="column">
+          Third column
+        </div>
+        <div class="column">
+          Fourth column
+        </div>
+      </div> -->
+<!-- Try to use this for nicer styling -->
+
+
     </div>
     <script src="js/bundle.js"></script>
   </body>
